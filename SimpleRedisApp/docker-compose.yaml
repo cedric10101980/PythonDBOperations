@@ -5,7 +5,7 @@ services:
     ports:
       - "6379:6379"
   app:
-    build: .
+    image: cedric10101980/python-redis-app:latest
     ports:
       - "5100:5100"
     depends_on:

@@ -1,5 +1,12 @@
 # Use the official python image as the base image
-FROM python:3.9-slim
+FROM python:3.9-alpine
+
+# Add Labels to docker image
+LABEL org.opencontainers.image.title="Flask App with Redis"
+LABEL org.opencontainers.image.description="A Python Flask application using Redis, containerized with Docker."
+LABEL org.opencontainers.image.authors="cedric10101980@gmail.com"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.source="https://github.com/cedric10101980/PythonOperations/tree/main/SimpleRedisApp"
 
 # Set the working directory in the container
 WORKDIR /app
