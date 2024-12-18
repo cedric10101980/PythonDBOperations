@@ -118,11 +118,32 @@ services:
     ports:
       - "6379:6379"
 ```
+---
+
+## 5. Configure Colima on MAC for Custom CA Certificate
+
+### Steps to Add a Custom CA Certificate
+
+1. Add your custom CA certificate to Colima's trusted certificates:
+   - Locate the certificate file (e.g., `my_custom_ca.crt`).
+   - Add it to Colima's trusted certificates directory. For example:
+     ```bash
+     mkdir -p ~/.colima/certs
+     cp my_custom_ca.crt ~/.colima/certs/
+     ```
+
+2. Restart Colima to apply the changes:
+   ```bash
+   colima stop
+   colima start
+   ```
+
+---
 
 Start the application using Docker Compose:
 
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 Visit [http://localhost:5000](http://localhost:5000) to see the app running.

@@ -4,13 +4,23 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the dependencies file to the working directory
-COPY requirements.txt requirements.txt
+COPY zscaler.cer .
 
-COPY ./app /app
+# Change permissions of the .cer file to be readable by all users
+RUN chmod a+r zscaler.cer
+
+# Convert the .cer file to .pem
+COPY zscaler.cer /usr/local/share/ca-certificates/zscaler.crt
+
+# Update the certificate authorities
+RUN update-ca-certificates
+
+
+# Copy all files from the src directory to the working directory in the container
+COPY ./src /app
 
 # Install any dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Exposure of the port
 EXPOSE 5100
